@@ -1,5 +1,19 @@
 /**
  * shows unique images on reddit pages
+ * 
+ * CONFIG:
+ * 
+ * change the value of imageWidth if you want the images to display larger or smaller
+ * 
+ * USAGE:
+ * 
+ * 1. copy the code below into clipboard (cmd+c or ctrl+c)
+ * 2. add a bookmark to your browser
+ * 3. edit the bookmarks url and delete what's in there
+ * 4. type in 'javascript: ' (without the quotes)
+ * 5. paste in the code (cmd+v or ctrl+v)
+ * 6. go to reddit... find a page with images you want to view and click on the bookmark
+ * 
  */
 
 var loaded = [];
