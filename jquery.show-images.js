@@ -17,26 +17,29 @@
  */
 
 var loaded = [];
-var imageWidth = '400px';
+var imageWidth = '500px';
 var apiKey = '3c5ee387435906f7b1fd1534732b8e7f';
 var flickrUrl = 'http://api.flickr.com/services/rest/';
 
 var getFlickrImage = function(href) {
-	var photoId = href.match(/\/([0-9]+)\//)[0].replace('/','');
-	$.getJSON(flickrUrl, {
-		method : 'flickr.photos.getSizes',
-		api_key : apiKey,
-		photo_id : photoId,
-		format : 'json',
-		nojsoncallback : 1
-	}, function(data) {
-		if (data.stat == 'ok') {
-			return data.sizes.size[3].source;
-		} else {
-			console.debug('ERROR: Failed to get flickr image from (' + href + ') ' + photoId);
-			return false;
-		}
-	});
+	var photoId = href.match(/\/([0-9]+)\//);
+	if ( photoId != null ) {
+		photoId = photoId[0].replace('/','');
+		$.getJSON(flickrUrl, {
+			method : 'flickr.photos.getSizes',
+			api_key : apiKey,
+			photo_id : photoId,
+			format : 'json',
+			nojsoncallback : 1
+		}, function(data) {
+			if (data.stat == 'ok') {
+				return data.sizes.size[3].source;
+			} else {
+				console.debug('ERROR: Failed to get flickr image from (' + href + ') ' + photoId);
+				return false;
+			}
+		});
+	}
 };
 
 $('.content').find('a').each(function() {
@@ -56,7 +59,7 @@ $('.content').find('a').each(function() {
 			} else {
 				if (href.indexOf('flickr') >= 0) {
 					href = getFlickrImage(href);
-					if (href) {
+					if (href != false) {
 						var img = $('<img />').attr('src', href).css({
 							width : imageWidth,
 							margin : '8px 0 8px 74px'
@@ -83,7 +86,7 @@ $('div.usertext-body').find('a').each(function() {
 		} else {
 			if (href.indexOf('flickr') >= 0) {
 				href = getFlickrImage(href);
-				if (href) {
+				if (href != false) {
 					var img = $('<img />').attr('src', href).css({
 						width : imageWidth,
 						display : 'inline'
