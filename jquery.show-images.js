@@ -14,6 +14,8 @@
  * go to reddit... find a page with images you want to view and click on the
  * bookmark
  * 
+ * @todo fix issue with flickr image ( calling .css() on a non-object )
+ * 
  */
 
 var loaded = [];
@@ -33,6 +35,7 @@ var getFlickrImage = function(href) {
 			nojsoncallback : 1
 		}, function(data) {
 			if (data.stat == 'ok') {
+				console.debug('flickr: ' + data.sizes.size[3].source);
 				return data.sizes.size[3].source;
 			} else {
 				console.debug('ERROR: Failed to get flickr image from (' + href + ') ' + photoId);
