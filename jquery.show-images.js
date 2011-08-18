@@ -54,19 +54,23 @@ $('.content').find('a').each(function() {
 			if (href.indexOf('imgur') >= 0 || href.indexOf('jpeg') >= 0 || href.indexOf('jpg') >= 0 || href.indexOf('png') >= 0) {
 				if (href.indexOf('imgur') >= 0 && href.indexOf('jpg') == -1)
 					href += '.jpg';
-				var img = $('<img />').attr('src', href).css({
+				var img = $('<a />',{
+					href: href
+				}).append($('<img />').attr('src', href).css({
 					width : imageWidth,
 					margin : '8px 0 8px 74px'
-				});
+				}));
 				$(this).closest('div.thing').after(img);
 			} else {
 				if (href.indexOf('flickr') >= 0) {
 					href = getFlickrImage(href);
 					if (href != false) {
-						var img = $('<img />').attr('src', href).css({
+						var img = $('<a />',{
+							href: href
+						}).append($('<img />').attr('src', href).css({
 							width : imageWidth,
 							margin : '8px 0 8px 74px'
-						});
+						}));
 						$this.closest('div.thing').after(img);
 					}
 				}
@@ -81,19 +85,23 @@ $('div.usertext-body').find('a').each(function() {
 		if (href.indexOf('imgur') >= 0 || href.indexOf('jpeg') >= 0 || href.indexOf('jpg') >= 0 || href.indexOf('png') >= 0) {
 			if (href.indexOf('imgur') >= 0 && href.indexOf('jpg') == -1)
 				href += '.jpg';
-			var img = $('<img />').attr('src', href).css({
+			var img = $('<a />',{
+				href: href
+			}).append($('<img />').attr('src', href).css({
 				width : imageWidth,
-				display : 'inline'
-			});
+				display: 'inline'
+			}));
 			$(this).after(img);
 		} else {
 			if (href.indexOf('flickr') >= 0) {
 				href = getFlickrImage(href);
 				if (href != false) {
-					var img = $('<img />').attr('src', href).css({
+					var img = $('<a />',{
+						href: href
+					}).append($('<img />').attr('src', href).css({
 						width : imageWidth,
-						display : 'inline'
-					});
+						display: 'inline'
+					}));
 					$this.closest('div.thing').after(img);
 				} 
 			}
