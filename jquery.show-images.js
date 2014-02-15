@@ -14,8 +14,6 @@
  * 5. paste in the code (cmd+v or ctrl+v)
  * 6. go to reddit... find a page with images you want to view and click on the bookmark
  *
- * @todo fix issue with flickr image ( calling .css() on a non-object )
- *
  */
 (function ( $ ) {
 
